@@ -3,11 +3,13 @@ import csv
 import random
 import math
 
+# Menghitung Jarak terdekat dari data ke neuron
 def jarak(x,n):
     temp = 0 
     temp = math.sqrt(((x[0]-n[0])**2) + ((x[1]-n[1])**2)) 
     return temp
 
+# Menghitung jarak neuron pemenang terhadap 2 tetangganya
 def hitungsn(x):
     tempsn = []
     j = 2 
@@ -16,12 +18,14 @@ def hitungsn(x):
         j+=1
     return tempsn
 
+# Menghitung Tn 
 def hitungtn(x):
     temptn = []
     for i in range(3):
         temptn.append(math.exp(-(x[i]**2)/8))
     return temptn
 
+# Menghitung Wn untuk di tambahkan pada Weight neuronnya 
 def hitungwn(x,y):
     temp3,temptetangga = [],[]
     l = tempjar[0][1]
@@ -38,6 +42,7 @@ def hitungwn(x,y):
     # print(temp3)
     return temp3
 
+# Menambahkan Wn dengan weight neuronnya
 def gantiw(x):
     temptetangga= []
     l = tempjar[0][1]
@@ -65,6 +70,7 @@ lis1,n = [],[]
 for d in reader:
     lis1.append((float(d[0]),float(d[1])))
 
+# Membangkitakan 4 neuron dengan weightnya di random dan tetangganya di tentukan sendiri
 n.append([random.uniform(-15,15),random.uniform(-15,15),0,1,2])
 n.append([random.uniform(-15,15),random.uniform(-15,15),1,0,3])
 n.append([random.uniform(-15,15),random.uniform(-15,15),2,0,3])
@@ -74,9 +80,12 @@ print(n)
 # for j in range (1):
 # for lis in range(100):
 
+# Perulangan untuk iterasi
 for a in range(10):
+    # Perulangan untuk setiap data
     for j in range(len(lis1)):
         tempjar = []
+        # Perulangan untuk setiap neuron dan mencari jarak terdekat untuk data tersebut
         for i in range (len(n)):
             tempjar.append((jarak(lis1[j],n[i]),i))
             tempjar.sort(key=takeSecond1)
@@ -86,5 +95,6 @@ for a in range(10):
         # print(temptn)
         temp1 = hitungwn(lis1[j],temptn)
         k = gantiw(temp1)
+
 print(n)
 
