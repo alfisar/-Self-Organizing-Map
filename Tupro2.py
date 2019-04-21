@@ -17,7 +17,7 @@ def hitungsn(x):
     for i in range(10):
         hasil = math.sqrt(((x[0]-n[i][0])**2) + ((x[1]-n[i][1])**2))
         # print(hasil)
-        if (hasil < sigma) :
+        if (hasil < 10) :
             tempsn.append([i,hasil])
 
     return tempsn
@@ -35,7 +35,7 @@ def hitungwn(x,y):
     for j in range(len(y)):
         temp1 = []
         for i in range (2):
-            temp1.append(lr*y[j]*(x[i]-n[tempsn[j][0]][i]))
+            temp1.append(str(lr*y[j]*(x[i]-n[tempsn[j][0]][i])))
         temp3.append((temp1[0],temp1[1]))
     # print(temp3)
     return temp3
@@ -45,7 +45,7 @@ def gantiw(x):
     for i in range(len(x)):
         k = []
         for j in range(2):
-            n[tempsn[i][0]][j] = n[tempsn[i][0]][j] + x[i][j]
+            n[tempsn[i][0]][j] = n[tempsn[i][0]][j] + double(x[i][j][:3])
     return k
 
 def takeSecond1(elem):
@@ -58,7 +58,7 @@ lis1,n,tetangga = [],[],[]
 for d in reader:
     lis1.append((float(d[0]),float(d[1])))
 
-# Membangkitakan 4 neuron dengan weightnya di random dan tetangganya di tentukan sendiri
+# Membangkitakan 10 neuron dengan weightnya di random dan tetangganya di tentukan sendiri
 for i in range(10):
     n.append([random.uniform(-15,15),random.uniform(-15,15)])
 print('n awal')
